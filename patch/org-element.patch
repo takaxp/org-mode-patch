@@ -1,0 +1,13 @@
+diff --git a/lisp/org-element.el b/lisp/org-element.el
+index 2577282bd..d0b40433d 100644
+--- a/lisp/org-element.el
++++ b/lisp/org-element.el
+@@ -4141,6 +4141,8 @@ If STRING is the empty string or nil, return nil."
+    ((equal string "") nil)
+    (t (let ((local-variables (buffer-local-variables)))
+ 	(with-temp-buffer
++	  (when (boundp 'session-file-alist)
++	    (set (make-local-variable 'session-file-alist) nil))
+ 	  (dolist (v local-variables)
+ 	    (ignore-errors
+ 	      (if (symbolp v) (makunbound v)
